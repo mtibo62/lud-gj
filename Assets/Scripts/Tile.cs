@@ -14,7 +14,7 @@ public class Tile : MonoBehaviour
 
     private BoxCollider2D collider;
 
-
+    public bool placeable = false;
 
 
     private void Awake()
@@ -22,6 +22,12 @@ public class Tile : MonoBehaviour
         _renderer = gameObject.GetComponent<SpriteRenderer>();
 
         collider = gameObject.GetComponent<BoxCollider2D>();
+
+
+        if (tileType == TileTypes.Ranged || tileType == TileTypes.Path)
+        {
+            placeable = true;
+        }
     }
 
     public void Init(bool isOffset, char value, GameObject tileContent = null)
@@ -29,6 +35,11 @@ public class Tile : MonoBehaviour
         Debug.Log(value);
 
         tileType = (TileTypes)int.Parse(value.ToString());
+
+        if(tileType == TileTypes.Ranged || tileType == TileTypes.Path)
+        {
+            placeable = true;
+        }
 
         _renderer.sprite = sprites[int.Parse(value.ToString())];
 
@@ -44,15 +55,25 @@ public class Tile : MonoBehaviour
         
     }
 
-    //void OnMouseEnter()
-    //{
-    //    _highlight.SetActive(true);
-    //}
+    void OnMouseEnter()
+    {
+        if (placeable)
+        {
+            _renderer.color = new Color(255, 255, 255, 120);
+            Debug.Log("OVER");
+        }
+        
+    }
 
-    //void OnMouseExit()
-    //{
-    //    _highlight.SetActive(false);
-    //}
+    void OnMouseExit()
+    {
+        if (placeable)
+        {
+            _renderer.color = new Color(255, 255, 255, 255);
+            Debug.Log("LEAVE");
+        }
+        
+    }
 }
 
 public enum TileTypes
