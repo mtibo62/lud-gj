@@ -59,7 +59,7 @@ public class Tile : MonoBehaviour
     {
         if (placeable)
         {
-            _renderer.color = new Color(255, 255, 255, 120);
+            _renderer.color = Color.red;
             Debug.Log("OVER");
         }
         
@@ -69,7 +69,7 @@ public class Tile : MonoBehaviour
     {
         if (placeable)
         {
-            _renderer.color = new Color(255, 255, 255, 255);
+            _renderer.color = Color.white;
             Debug.Log("LEAVE");
         }
         
