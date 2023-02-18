@@ -16,6 +16,8 @@ public class Tile : MonoBehaviour
 
     public bool placeable = false;
 
+    public bool containsUnit = false;
+
 
     private void Awake()
     {
